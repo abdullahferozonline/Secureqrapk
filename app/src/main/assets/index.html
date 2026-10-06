@@ -2,653 +2,677 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#080b14">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#070a12">
 
 <title>SecurePay</title>
 
 <style>
 :root{
---bg:#070a12;
---card:rgba(18,24,39,.82);
---line:rgba(255,255,255,.09);
---text:#f8fafc;
---muted:#94a3b8;
---a:#7180ff;
---b:#9b5cff;
---green:#39e58c;
---red:#ff6680;
---white:#fff
+    --bg:#070a12;
+    --card:rgba(18,24,39,.82);
+    --line:rgba(255,255,255,.09);
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --a:#7180ff;
+    --b:#9b5cff;
+    --green:#39e58c;
+    --red:#ff6680;
 }
 
 *{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
-margin:0;
-min-height:100%;
-background:var(--bg)
+html,
+body{
+    margin:0;
+    min-height:100%;
+    background:var(--bg);
 }
 
 body{
-font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-color:var(--text);
-overflow-x:hidden
+    font-family:Inter,system-ui,-apple-system,
+                 BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    color:var(--text);
+    overflow-x:hidden;
 }
 
 body:before,
 body:after{
-content:"";
-position:fixed;
-border-radius:50%;
-filter:blur(55px);
-pointer-events:none;
-z-index:0
+    content:"";
+    position:fixed;
+    border-radius:50%;
+    filter:blur(55px);
+    pointer-events:none;
+    z-index:0;
 }
 
 body:before{
-width:240px;
-height:240px;
-left:-100px;
-top:80px;
-background:#4d5cff55;
-animation:float1 9s ease-in-out infinite
+    width:240px;
+    height:240px;
+    left:-100px;
+    top:80px;
+    background:#4d5cff55;
+    animation:float1 9s ease-in-out infinite;
 }
 
 body:after{
-width:260px;
-height:260px;
-right:-120px;
-top:48%;
-background:#9b5cff44;
-animation:float2 11s ease-in-out infinite
+    width:260px;
+    height:260px;
+    right:-120px;
+    top:48%;
+    background:#9b5cff44;
+    animation:float2 11s ease-in-out infinite;
 }
 
 @keyframes float1{
-50%{
-transform:translate(35px,40px) scale(1.15)
-}
+    50%{
+        transform:translate(35px,40px) scale(1.15);
+    }
 }
 
 @keyframes float2{
-50%{
-transform:translate(-30px,-45px) scale(.9)
-}
+    50%{
+        transform:translate(-30px,-45px) scale(.9);
+    }
 }
 
 .app{
-position:relative;
-z-index:1;
-max-width:470px;
-min-height:100vh;
-margin:auto;
-padding:16px 15px 28px;
-display:flex;
-flex-direction:column
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:470px;
+    min-height:100vh;
+    margin:auto;
+    padding:16px 15px 28px;
+    display:flex;
+    flex-direction:column;
 }
 
 .top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:14px;
-animation:down .7s cubic-bezier(.16,1,.3,1)
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
 }
 
 .brand{
-display:flex;
-align-items:center;
-gap:10px
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
 .logo{
-width:44px;
-height:44px;
-border-radius:15px;
-display:grid;
-place-items:center;
-font-size:21px;
-background:linear-gradient(135deg,var(--a),var(--b));
-box-shadow:0 12px 35px #7180ff38;
-animation:logo 4s ease-in-out infinite
+    width:44px;
+    height:44px;
+    border-radius:15px;
+    display:grid;
+    place-items:center;
+    font-size:21px;
+    background:linear-gradient(135deg,var(--a),var(--b));
+    box-shadow:0 12px 35px #7180ff38;
+    animation:logo 4s ease-in-out infinite;
 }
 
 @keyframes logo{
-50%{
-transform:translateY(-2px) rotate(2deg)
-}
+    50%{
+        transform:translateY(-2px) rotate(2deg);
+    }
 }
 
 .name{
-font-weight:850;
-font-size:17px
+    font-weight:850;
+    font-size:17px;
 }
 
 .sub{
-font-size:10px;
-color:var(--muted);
-margin-top:2px
+    font-size:10px;
+    color:var(--muted);
+    margin-top:2px;
 }
 
 .ready{
-display:flex;
-align-items:center;
-gap:6px;
-border:1px solid var(--line);
-background:#ffffff08;
-padding:8px 10px;
-border-radius:99px;
-font-size:9px
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border:1px solid var(--line);
+    background:#ffffff08;
+    padding:8px 10px;
+    border-radius:99px;
+    font-size:9px;
 }
 
 .dot{
-width:7px;
-height:7px;
-border-radius:50%;
-background:var(--green);
-box-shadow:0 0 13px var(--green);
-animation:pulse 1.8s infinite
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 13px var(--green);
+    animation:pulse 1.8s infinite;
 }
 
 @keyframes pulse{
-50%{
-opacity:.4;
-transform:scale(.65)
-}
+    50%{
+        opacity:.4;
+        transform:scale(.65);
+    }
 }
 
 .screen{
-display:none;
-animation:screen .55s cubic-bezier(.16,1,.3,1)
+    display:none;
+    animation:screen .55s cubic-bezier(.16,1,.3,1);
 }
 
 .screen.active{
-display:block
+    display:block;
 }
 
 @keyframes screen{
-from{
-opacity:0;
-transform:translateY(22px) scale(.97)
-}
-to{
-opacity:1;
-transform:none
-}
+    from{
+        opacity:0;
+        transform:translateY(22px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
 }
 
 .hero{
-padding:12px 4px 18px
+    padding:12px 4px 18px;
 }
 
 .eyebrow{
-font-size:10px;
-font-weight:800;
-letter-spacing:1px;
-color:#aeb8ff
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1px;
+    color:#aeb8ff;
 }
 
 h1{
-font-size:34px;
-line-height:1.03;
-letter-spacing:-1.7px;
-margin:7px 0
+    font-size:34px;
+    line-height:1.03;
+    letter-spacing:-1.7px;
+    margin:7px 0;
 }
 
 .hero p{
-font-size:13px;
-line-height:1.5;
-color:var(--muted);
-margin:0
+    font-size:13px;
+    line-height:1.5;
+    color:var(--muted);
+    margin:0;
 }
 
 .card{
-background:linear-gradient(145deg,#ffffff0d,#ffffff03);
-border:1px solid var(--line);
-border-radius:28px;
-padding:20px;
-backdrop-filter:blur(24px);
-box-shadow:0 25px 70px #0008;
-overflow:hidden
+    background:linear-gradient(145deg,#ffffff0d,#ffffff03);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:20px;
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    box-shadow:0 25px 70px #0008;
+    overflow:hidden;
 }
 
 .merchant{
-display:flex;
-align-items:center;
-gap:11px;
-margin-bottom:20px
+    display:flex;
+    align-items:center;
+    gap:11px;
+    margin-bottom:20px;
 }
 
 .merchant-icon{
-width:48px;
-height:48px;
-border-radius:16px;
-display:grid;
-place-items:center;
-background:#7180ff18;
-border:1px solid var(--line);
-font-size:21px
+    width:48px;
+    height:48px;
+    border-radius:16px;
+    display:grid;
+    place-items:center;
+    background:#7180ff18;
+    border:1px solid var(--line);
+    font-size:21px;
 }
 
 .merchant-name{
-font-size:15px;
-font-weight:800
+    font-size:15px;
+    font-weight:800;
 }
 
 .merchant-upi{
-font-size:10px;
-color:var(--muted);
-margin-top:3px
+    font-size:10px;
+    color:var(--muted);
+    margin-top:3px;
 }
 
 .label{
-font-size:10px;
-font-weight:800;
-color:#94a3b8;
-letter-spacing:.7px;
-margin-bottom:8px
+    font-size:10px;
+    font-weight:800;
+    color:#94a3b8;
+    letter-spacing:.7px;
+    margin-bottom:8px;
 }
 
 .amountbox{
-position:relative
+    position:relative;
 }
 
 .currency{
-position:absolute;
-left:18px;
-top:50%;
-transform:translateY(-50%);
-font-size:27px;
-font-weight:800;
-color:#aeb8ff
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:27px;
+    font-weight:800;
+    color:#aeb8ff;
+    z-index:2;
 }
 
 .amount{
-width:100%;
-height:68px;
-border-radius:19px;
-border:1px solid var(--line);
-outline:0;
-background:#0004;
-color:#fff;
-padding:0 15px 0 48px;
-font-size:30px;
-font-weight:850
+    width:100%;
+    height:68px;
+    border-radius:19px;
+    border:1px solid var(--line);
+    outline:0;
+    background:#0004;
+    color:#fff;
+    padding:0 15px 0 48px;
+    font-size:30px;
+    font-weight:850;
 }
 
 .amount:focus{
-border-color:#7180ff88;
-box-shadow:0 0 0 4px #7180ff18
+    border-color:#7180ff88;
+    box-shadow:0 0 0 4px #7180ff18;
 }
 
 .quick{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:8px;
-margin-top:10px
-}
-
-.quick button{
-border:1px solid var(--line);
-background:#ffffff07;
-color:#dbe2ef;
-border-radius:13px;
-padding:10px 4px;
-font-weight:750;
-font-size:11px
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:10px;
 }
 
 button{
-font-family:inherit;
-cursor:pointer
+    font-family:inherit;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.quick button{
+    border:1px solid var(--line);
+    background:#ffffff07;
+    color:#dbe2ef;
+    border-radius:13px;
+    padding:10px 4px;
+    font-weight:750;
+    font-size:11px;
 }
 
 .quick button:active,
 .action:active,
-.key:active{
-transform:scale(.95)
-}
-
-.action{
-position:relative;
-width:100%;
-border:0;
-border-radius:18px;
-padding:16px;
-margin-top:14px;
-background:linear-gradient(135deg,#6576ff,#8d52e8);
-color:#fff;
-font-size:14px;
-font-weight:850;
-box-shadow:0 15px 35px #7180ff2b;
-transition:.18s;
-overflow:hidden
-}
-
-.action:after{
-content:"";
-position:absolute;
-inset:0;
-left:-120%;
-width:65%;
-background:linear-gradient(90deg,transparent,#fff3,transparent);
-transform:skewX(-20deg);
-animation:shine 3.8s infinite
-}
-
-@keyframes shine{
-70%{
-left:-120%
-}
-90%,100%{
-left:140%
-}
-}
-
-.hint{
-text-align:center;
-color:#64748b;
-font-size:9px;
-margin-top:13px
+.key:active,
+.lock:active,
+.meta button:active{
+    transform:scale(.95);
 }
 
 .keypad{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:9px;
-margin-top:14px
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:14px;
 }
 
 .key{
-height:51px;
-border:1px solid var(--line);
-border-radius:15px;
-background:#ffffff06;
-color:#f1f5f9;
-font-size:18px;
-font-weight:750;
-transition:.12s
+    height:51px;
+    border:1px solid var(--line);
+    border-radius:15px;
+    background:#ffffff06;
+    color:#f1f5f9;
+    font-size:18px;
+    font-weight:750;
+    transition:.12s;
 }
 
 .key.back{
-font-size:15px
+    font-size:15px;
+}
+
+.action{
+    position:relative;
+    width:100%;
+    border:0;
+    border-radius:18px;
+    padding:16px;
+    margin-top:14px;
+    background:linear-gradient(135deg,#6576ff,#8d52e8);
+    color:#fff;
+    font-size:14px;
+    font-weight:850;
+    box-shadow:0 15px 35px #7180ff2b;
+    transition:.18s;
+    overflow:hidden;
+}
+
+.action:disabled{
+    opacity:.55;
+}
+
+.action:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    left:-120%;
+    width:65%;
+    background:linear-gradient(90deg,transparent,#fff3,transparent);
+    transform:skewX(-20deg);
+    animation:shine 3.8s infinite;
+}
+
+@keyframes shine{
+    70%{
+        left:-120%;
+    }
+    90%,100%{
+        left:140%;
+    }
+}
+
+.hint{
+    text-align:center;
+    color:#64748b;
+    font-size:9px;
+    margin-top:13px;
 }
 
 .qrhead{
-text-align:center
+    text-align:center;
 }
 
 .badge{
-display:inline-flex;
-align-items:center;
-gap:7px;
-padding:7px 11px;
-border-radius:99px;
-background:#39e58c12;
-border:1px solid #39e58c24;
-color:#86efac;
-font-size:9px;
-font-weight:850;
-letter-spacing:.5px
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 11px;
+    border-radius:99px;
+    background:#39e58c12;
+    border:1px solid #39e58c24;
+    color:#86efac;
+    font-size:9px;
+    font-weight:850;
+    letter-spacing:.5px;
 }
 
 .qrtitle{
-font-size:24px;
-font-weight:850;
-margin-top:11px
+    font-size:24px;
+    font-weight:850;
+    margin-top:11px;
 }
 
 .qrsub{
-font-size:10px;
-color:var(--muted);
-margin-top:4px
+    font-size:10px;
+    color:var(--muted);
+    margin-top:4px;
 }
 
 .qramount{
-font-size:30px;
-font-weight:900;
-text-align:center;
-margin-top:5px
+    font-size:30px;
+    font-weight:900;
+    text-align:center;
+    margin-top:5px;
 }
 
 .qrwrap{
-position:relative;
-width:min(76vw,290px);
-height:min(76vw,290px);
-margin:18px auto
+    position:relative;
+    width:min(76vw,290px);
+    height:min(76vw,290px);
+    margin:18px auto;
 }
 
 .glow{
-position:absolute;
-inset:-20px;
-border-radius:40px;
-background:radial-gradient(circle,#7180ff33,transparent 68%);
-filter:blur(10px);
-animation:glow 2.7s ease-in-out infinite
+    position:absolute;
+    inset:-20px;
+    border-radius:40px;
+    background:radial-gradient(
+        circle,
+        #7180ff33,
+        transparent 68%
+    );
+    filter:blur(10px);
+    animation:glow 2.7s ease-in-out infinite;
 }
 
 @keyframes glow{
-50%{
-transform:scale(1.08);
-opacity:.75
-}
+    50%{
+        transform:scale(1.08);
+        opacity:.75;
+    }
 }
 
 .qrframe{
-position:relative;
-width:100%;
-height:100%;
-padding:15px;
-border-radius:27px;
-background:#fff;
-box-shadow:0 20px 55px #0008;
-animation:qr .7s cubic-bezier(.16,1,.3,1)
+    position:relative;
+    width:100%;
+    height:100%;
+    padding:15px;
+    border-radius:27px;
+    background:#fff;
+    box-shadow:0 20px 55px #0008;
+    animation:qr .7s cubic-bezier(.16,1,.3,1);
 }
 
 @keyframes qr{
-from{
-opacity:0;
-transform:scale(.65) rotate(-4deg)
-}
-to{
-opacity:1;
-transform:none
-}
+    from{
+        opacity:0;
+        transform:scale(.65) rotate(-4deg);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
 }
 
 .qrframe img{
-width:100%;
-height:100%;
-object-fit:contain
+    width:100%;
+    height:100%;
+    object-fit:contain;
 }
 
 .timer{
-position:relative;
-width:112px;
-height:112px;
-margin:8px auto 16px;
-display:grid;
-place-items:center
+    position:relative;
+    width:112px;
+    height:112px;
+    margin:8px auto 16px;
+    display:grid;
+    place-items:center;
 }
 
 .timer svg{
-position:absolute;
-inset:0;
-transform:rotate(-90deg)
+    position:absolute;
+    inset:0;
+    transform:rotate(-90deg);
 }
 
 .track,
 .progress{
-fill:none;
-stroke-width:6
+    fill:none;
+    stroke-width:6;
 }
 
 .track{
-stroke:#fff0d
+    stroke:#ffffff0d;
 }
 
 .progress{
-stroke:#7785ff;
-stroke-linecap:round;
-stroke-dasharray:301.59;
-transition:stroke-dashoffset 1s linear
+    stroke:#7785ff;
+    stroke-linecap:round;
+    stroke-dasharray:301.59;
+    transition:stroke-dashoffset 1s linear;
 }
 
 .tvalue{
-font-size:21px;
-font-weight:850;
-text-align:center
+    font-size:21px;
+    font-weight:850;
+    text-align:center;
 }
 
 .tlabel{
-font-size:8px;
-color:#64748b;
-letter-spacing:.8px;
-text-align:center;
-margin-top:2px
+    font-size:8px;
+    color:#64748b;
+    letter-spacing:.8px;
+    text-align:center;
+    margin-top:2px;
 }
 
 .lock{
-width:100%;
-border:1px solid var(--line);
-background:#ffffff07;
-color:#e2e8f0;
-padding:14px;
-border-radius:16px;
-font-weight:750
+    width:100%;
+    border:1px solid var(--line);
+    background:#ffffff07;
+    color:#e2e8f0;
+    padding:14px;
+    border-radius:16px;
+    font-weight:750;
 }
 
 .meta{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
-margin-top:10px
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:10px;
 }
 
 .meta button{
-border:1px solid var(--line);
-background:#ffffff05;
-color:#cbd5e1;
-padding:11px;
-border-radius:13px;
-font-size:10px;
-font-weight:700
+    border:1px solid var(--line);
+    background:#ffffff05;
+    color:#cbd5e1;
+    padding:11px;
+    border-radius:13px;
+    font-size:10px;
+    font-weight:700;
 }
 
 .lockicon{
-width:88px;
-height:88px;
-margin:8px auto 18px;
-border-radius:29px;
-display:grid;
-place-items:center;
-background:#ff668012;
-border:1px solid #ff668026;
-font-size:38px;
-animation:pop .55s cubic-bezier(.16,1,.3,1)
+    width:88px;
+    height:88px;
+    margin:8px auto 18px;
+    border-radius:29px;
+    display:grid;
+    place-items:center;
+    background:#ff668012;
+    border:1px solid #ff668026;
+    font-size:38px;
+    animation:pop .55s cubic-bezier(.16,1,.3,1);
 }
 
 @keyframes pop{
-from{
-transform:scale(.5) rotate(-12deg);
-opacity:0
-}
-to{
-transform:none;
-opacity:1
-}
+    from{
+        transform:scale(.5) rotate(-12deg);
+        opacity:0;
+    }
+    to{
+        transform:none;
+        opacity:1;
+    }
 }
 
 .center{
-text-align:center
+    text-align:center;
 }
 
 .lockedtitle{
-font-size:25px;
-font-weight:900
+    font-size:25px;
+    font-weight:900;
 }
 
 .lockedtext{
-color:var(--muted);
-font-size:12px;
-line-height:1.5;
-margin:8px 15px 20px
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.5;
+    margin:8px 15px 20px;
 }
 
 .settings-row{
-margin-bottom:12px
+    margin-bottom:12px;
 }
 
 .settings-row label{
-display:block;
-color:#94a3b8;
-font-size:10px;
-font-weight:800;
-margin-bottom:6px
+    display:block;
+    color:#94a3b8;
+    font-size:10px;
+    font-weight:800;
+    margin-bottom:6px;
 }
 
 .settings-row input{
-width:100%;
-height:48px;
-border-radius:14px;
-border:1px solid var(--line);
-background:#0004;
-color:#fff;
-padding:0 13px;
-outline:0
+    width:100%;
+    height:48px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:#0004;
+    color:#fff;
+    padding:0 13px;
+    outline:0;
+}
+
+.settings-button{
+    margin-left:8px;
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:#ffffff08;
+    color:#dbe2ef;
+    font-size:18px;
 }
 
 .footer{
-text-align:center;
-color:#475569;
-font-size:9px;
-margin-top:auto;
-padding-top:24px
+    text-align:center;
+    color:#475569;
+    font-size:9px;
+    margin-top:auto;
+    padding-top:24px;
 }
 
 .toast{
-position:fixed;
-left:50%;
-bottom:22px;
-transform:translate(-50%,20px);
-opacity:0;
-background:#151b2a;
-border:1px solid var(--line);
-padding:11px 15px;
-border-radius:99px;
-font-size:11px;
-z-index:20;
-transition:.3s;
-pointer-events:none;
-white-space:nowrap
+    position:fixed;
+    left:50%;
+    bottom:22px;
+    transform:translate(-50%,20px);
+    opacity:0;
+    background:#151b2a;
+    border:1px solid var(--line);
+    padding:11px 15px;
+    border-radius:99px;
+    font-size:11px;
+    z-index:20;
+    transition:.3s;
+    pointer-events:none;
+    white-space:nowrap;
 }
 
 .toast.show{
-opacity:1;
-transform:translate(-50%,0)
+    opacity:1;
+    transform:translate(-50%,0);
 }
 
 @media(max-height:700px){
+    h1{
+        font-size:29px;
+    }
 
-h1{
-font-size:29px
-}
+    .hero{
+        padding-top:4px;
+    }
 
-.hero{
-padding-top:4px
-}
+    .qrwrap{
+        width:235px;
+        height:235px;
+    }
 
-.qrwrap{
-width:235px;
-height:235px
-}
-
-.key{
-height:45px
-}
-
+    .key{
+        height:45px;
+    }
 }
 </style>
 </head>
@@ -659,21 +683,32 @@ height:45px
 
 <header class="top">
 
-<div class="brand">
+    <div class="brand">
 
-<div class="logo">◈</div>
+        <div class="logo">◈</div>
 
-<div>
-<div class="name">SecurePay</div>
-<div class="sub">Premium UPI terminal</div>
-</div>
+        <div>
+            <div class="name">SecurePay</div>
+            <div class="sub">Premium UPI terminal</div>
+        </div>
 
-</div>
+    </div>
 
-<div class="ready">
-<span class="dot"></span>
-READY
-</div>
+    <div style="display:flex;align-items:center;gap:7px">
+
+        <button
+            class="settings-button"
+            onclick="showSettings()"
+            aria-label="Settings">
+            ⚙
+        </button>
+
+        <div class="ready">
+            <span class="dot"></span>
+            READY
+        </div>
+
+    </div>
 
 </header>
 
@@ -682,24 +717,1087 @@ READY
 
 <section id="home" class="screen active">
 
-<div class="hero">
+    <div class="hero">
 
-<div class="eyebrow">
-FAST • SIMPLE • PRIVATE
+        <div class="eyebrow">
+            FAST • SIMPLE • PRIVATE
+        </div>
+
+        <h1>
+            Accept payments<br>
+            beautifully.
+        </h1>
+
+        <p>
+            Create a temporary UPI QR in seconds.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="merchant">
+
+            <div class="merchant-icon">
+                🏪
+            </div>
+
+            <div>
+
+                <div
+                    id="merchantName"
+                    class="merchant-name">
+                    Firoz Electricals
+                </div>
+
+                <div
+                    id="merchantUpi"
+                    class="merchant-upi">
+                    7070790126@ybl
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="label">
+            PAYMENT AMOUNT
+        </div>
+
+
+        <div class="amountbox">
+
+            <span class="currency">
+                ₹
+            </span>
+
+            <input
+                id="amount"
+                class="amount"
+                inputmode="decimal"
+                type="text"
+                placeholder="0.00"
+                readonly>
+
+        </div>
+
+
+        <div class="quick">
+
+            <button onclick="setAmount(50)">
+                ₹50
+            </button>
+
+            <button onclick="setAmount(100)">
+                ₹100
+            </button>
+
+            <button onclick="setAmount(200)">
+                ₹200
+            </button>
+
+            <button onclick="setAmount(500)">
+                ₹500
+            </button>
+
+        </div>
+
+
+        <div class="keypad">
+
+            <button class="key" onclick="keyPress('1')">1</button>
+            <button class="key" onclick="keyPress('2')">2</button>
+            <button class="key" onclick="keyPress('3')">3</button>
+
+            <button class="key" onclick="keyPress('4')">4</button>
+            <button class="key" onclick="keyPress('5')">5</button>
+            <button class="key" onclick="keyPress('6')">6</button>
+
+            <button class="key" onclick="keyPress('7')">7</button>
+            <button class="key" onclick="keyPress('8')">8</button>
+            <button class="key" onclick="keyPress('9')">9</button>
+
+            <button class="key" onclick="keyPress('.')">.</button>
+            <button class="key" onclick="keyPress('0')">0</button>
+            <button class="key back" onclick="backspace()">⌫</button>
+
+        </div>
+
+
+        <button
+            id="generateButton"
+            class="action"
+            onclick="generateQR()">
+
+            Generate Secure QR
+
+        </button>
+
+
+        <div class="hint">
+            🔒 Display automatically locks after 5 minutes
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- QR SCREEN -->
+
+<section id="qr" class="screen">
+
+    <div class="card">
+
+        <div class="qrhead">
+
+            <div class="badge">
+                <span class="dot"></span>
+                QR ACTIVE
+            </div>
+
+            <div class="qrtitle">
+                Scan to Pay
+            </div>
+
+            <div
+                id="qrShop"
+                class="qrsub">
+                Firoz Electricals
+            </div>
+
+        </div>
+
+
+        <div
+            id="qrAmount"
+            class="qramount">
+            ₹0.00
+        </div>
+
+
+        <div
+            id="qrUpi"
+            class="qrsub"
+            style="text-align:center">
+            7070790126@ybl
+        </div>
+
+
+        <div class="qrwrap">
+
+            <div class="glow"></div>
+
+            <div class="qrframe">
+
+                <img
+                    id="qrImage"
+                    alt="UPI QR Code">
+
+            </div>
+
+        </div>
+
+
+        <div class="timer">
+
+            <svg viewBox="0 0 112 112">
+
+                <circle
+                    class="track"
+                    cx="56"
+                    cy="56"
+                    r="48">
+                </circle>
+
+                <circle
+                    id="progress"
+                    class="progress"
+                    cx="56"
+                    cy="56"
+                    r="48">
+                </circle>
+
+            </svg>
+
+
+            <div>
+
+                <div
+                    id="timer"
+                    class="tvalue">
+                    05:00
+                </div>
+
+                <div class="tlabel">
+                    EXPIRES IN
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="lock"
+            onclick="lockQR(false)">
+
+            🔒 Lock QR Now
+
+        </button>
+
+
+        <div class="meta">
+
+            <button onclick="copyUPI()">
+                📋 Copy UPI ID
+            </button>
+
+            <button onclick="sharePayment()">
+                ↗ Share
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LOCKED SCREEN -->
+
+<section id="locked" class="screen">
+
+    <div class="card center">
+
+        <div class="lockicon">
+            🔒
+        </div>
+
+        <div class="lockedtitle">
+            QR Locked
+        </div>
+
+        <div class="lockedtext">
+            This display session has ended.
+            Create a fresh QR for the next payment.
+        </div>
+
+        <button
+            class="action"
+            onclick="newPayment()">
+
+            Generate New Payment
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settings" class="screen">
+
+    <div class="card">
+
+        <div class="qrtitle">
+            Settings
+        </div>
+
+        <div
+            class="qrsub"
+            style="margin-bottom:20px">
+
+            Local terminal settings
+
+        </div>
+
+
+        <div class="settings-row">
+
+            <label>
+                SHOP NAME
+            </label>
+
+            <input
+                id="shopInput"
+                type="text"
+                value="Firoz Electricals">
+
+        </div>
+
+
+        <div class="settings-row">
+
+            <label>
+                UPI ID
+            </label>
+
+            <input
+                id="upiInput"
+                type="text"
+                value="7070790126@ybl">
+
+        </div>
+
+
+        <button
+            class="action"
+            onclick="saveSettings()">
+
+            Save Settings
+
+        </button>
+
+
+        <button
+            class="lock"
+            style="margin-top:10px"
+            onclick="show('home')">
+
+            ← Back
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+    <span id="footerShop">
+        Firoz Electricals
+    </span>
+    • SecurePay local terminal
+</footer>
+
 </div>
 
-<h1>
-Accept payments<br>
-beautifully.
-</h1>
 
-<p>
-Create a temporary UPI QR in seconds.
-</p>
-
+<div
+    id="toast"
+    class="toast">
 </div>
 
 
-<div class="card">
+<script>
 
-<div class="merchant">
+/* =========================================================
+   SECUREPAY ANDROID
+   Completely standalone.
+   No Flask.
+   No HTTP.
+   No server.
+   ========================================================= */
+
+
+/* ---------- DEFAULT SETTINGS ---------- */
+
+const DEFAULT_SHOP = "Firoz Electricals";
+const DEFAULT_UPI = "7070790126@ybl";
+
+let SHOP = DEFAULT_SHOP;
+let UPI = DEFAULT_UPI;
+
+
+/* ---------- LOAD LOCAL SETTINGS ---------- */
+
+function loadSettings(){
+
+    try{
+
+        const savedShop =
+            localStorage.getItem("securepay_shop");
+
+        const savedUpi =
+            localStorage.getItem("securepay_upi");
+
+        if(savedShop && savedShop.trim()){
+            SHOP = savedShop.trim();
+        }
+
+        if(savedUpi && savedUpi.trim()){
+            UPI = savedUpi.trim();
+        }
+
+    }catch(e){
+
+        SHOP = DEFAULT_SHOP;
+        UPI = DEFAULT_UPI;
+
+    }
+
+}
+
+
+/* ---------- UPDATE UI ---------- */
+
+function updateMerchantUI(){
+
+    document.getElementById("merchantName").textContent = SHOP;
+
+    document.getElementById("merchantUpi").textContent = UPI;
+
+    document.getElementById("qrShop").textContent = SHOP;
+
+    document.getElementById("qrUpi").textContent = UPI;
+
+    document.getElementById("footerShop").textContent = SHOP;
+
+    document.getElementById("shopInput").value = SHOP;
+
+    document.getElementById("upiInput").value = UPI;
+
+}
+
+
+/* ---------- SCREEN NAVIGATION ---------- */
+
+function show(id){
+
+    const screens =
+        document.querySelectorAll(".screen");
+
+    screens.forEach(function(screen){
+
+        screen.classList.remove("active");
+
+    });
+
+    const target =
+        document.getElementById(id);
+
+    if(target){
+
+        target.classList.add("active");
+
+        window.scrollTo(0,0);
+
+    }
+
+}
+
+
+/* ---------- SETTINGS ---------- */
+
+function showSettings(){
+
+    document.getElementById("shopInput").value = SHOP;
+
+    document.getElementById("upiInput").value = UPI;
+
+    show("settings");
+
+}
+
+
+/* ---------- TOAST ---------- */
+
+let toastTimer = null;
+
+function toast(message){
+
+    const element =
+        document.getElementById("toast");
+
+    element.textContent = message;
+
+    element.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(function(){
+
+            element.classList.remove("show");
+
+        },1800);
+
+}
+
+
+/* ---------- VIBRATION ---------- */
+
+function buzz(milliseconds){
+
+    try{
+
+        if(navigator.vibrate){
+
+            navigator.vibrate(milliseconds);
+
+        }
+
+    }catch(e){}
+
+}
+
+
+/* ---------- AMOUNT ---------- */
+
+function amountElement(){
+
+    return document.getElementById("amount");
+
+}
+
+
+/* ---------- KEYPAD ---------- */
+
+function keyPress(value){
+
+    const input = amountElement();
+
+    let current = input.value || "";
+
+    if(value === "."){
+
+        if(current.includes(".")){
+
+            return;
+
+        }
+
+        if(current === ""){
+
+            current = "0";
+
+        }
+
+    }
+
+    if(current.includes(".")){
+
+        const decimal =
+            current.split(".")[1] || "";
+
+        if(decimal.length >= 2){
+
+            return;
+
+        }
+
+    }
+
+    if(current === "0" && value !== "."){
+
+        current = "";
+
+    }
+
+    if(current.length >= 10){
+
+        return;
+
+    }
+
+    input.value =
+        current + value;
+
+    buzz(8);
+
+}
+
+
+/* ---------- BACKSPACE ---------- */
+
+function backspace(){
+
+    const input = amountElement();
+
+    input.value =
+        (input.value || "").slice(0,-1);
+
+    buzz(8);
+
+}
+
+
+/* ---------- QUICK AMOUNT ---------- */
+
+function setAmount(value){
+
+    amountElement().value =
+        Number(value).toFixed(2);
+
+    buzz(15);
+
+}
+
+
+/* ---------- UPI URI ---------- */
+
+function makeUPIUri(amount){
+
+    return (
+        "upi://pay?" +
+        "pa=" + encodeURIComponent(UPI) +
+        "&pn=" + encodeURIComponent(SHOP) +
+        "&am=" + Number(amount).toFixed(2) +
+        "&cu=INR"
+    );
+
+}
+
+
+/* ---------- QR GENERATION ---------- */
+
+let remaining = 300;
+
+let timerInterval = null;
+
+const CIRCUMFERENCE = 301.59;
+
+
+function generateQR(){
+
+    const raw =
+        amountElement().value.trim();
+
+    const amount =
+        Number(raw);
+
+    if(!Number.isFinite(amount) || amount <= 0){
+
+        toast("Enter an amount");
+
+        buzz(40);
+
+        return;
+
+    }
+
+    if(amount > 10000000){
+
+        toast("Amount is too large");
+
+        buzz(40);
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById("generateButton");
+
+    button.disabled = true;
+
+
+    try{
+
+        /*
+         * IMPORTANT:
+         * QR is generated inside MainActivity.kt.
+         */
+
+        const uri =
+            makeUPIUri(amount);
+
+
+        if(typeof Android === "undefined" ||
+           typeof Android.generateQR !== "function"){
+
+            toast("Android QR engine unavailable");
+
+            button.disabled = false;
+
+            return;
+
+        }
+
+
+        const base64 =
+            Android.generateQR(uri,700);
+
+
+        if(!base64){
+
+            toast("QR generation failed");
+
+            button.disabled = false;
+
+            return;
+
+        }
+
+
+        document.getElementById("qrImage").src =
+            "data:image/png;base64," + base64;
+
+
+        document.getElementById("qrAmount").textContent =
+            "₹" + amount.toFixed(2);
+
+
+        document.getElementById("qrShop").textContent =
+            SHOP;
+
+
+        document.getElementById("qrUpi").textContent =
+            UPI;
+
+
+        show("qr");
+
+        startTimer();
+
+        buzz(25);
+
+
+    }catch(error){
+
+        console.error(error);
+
+        toast("Unable to generate QR");
+
+        buzz(40);
+
+    }
+
+
+    button.disabled = false;
+
+}
+
+
+/* ---------- TIMER ---------- */
+
+function startTimer(){
+
+    clearInterval(timerInterval);
+
+    remaining = 300;
+
+    updateTimer();
+
+
+    timerInterval =
+        setInterval(function(){
+
+            remaining--;
+
+            updateTimer();
+
+
+            if(remaining <= 0){
+
+                clearInterval(timerInterval);
+
+                lockQR(true);
+
+            }
+
+        },1000);
+
+}
+
+
+/* ---------- UPDATE TIMER ---------- */
+
+function updateTimer(){
+
+    const minutes =
+        String(Math.floor(remaining / 60))
+            .padStart(2,"0");
+
+    const seconds =
+        String(remaining % 60)
+            .padStart(2,"0");
+
+
+    document.getElementById("timer").textContent =
+        minutes + ":" + seconds;
+
+
+    const progress =
+        document.getElementById("progress");
+
+
+    const offset =
+        CIRCUMFERENCE *
+        (1 - remaining / 300);
+
+
+    progress.style.strokeDashoffset =
+        offset;
+
+
+    if(remaining <= 30){
+
+        progress.style.stroke =
+            "#ff6680";
+
+    }else{
+
+        progress.style.stroke =
+            "#7785ff";
+
+    }
+
+}
+
+
+/* ---------- LOCK ---------- */
+
+function lockQR(expired){
+
+    clearInterval(timerInterval);
+
+    timerInterval = null;
+
+    remaining = 0;
+
+    updateTimer();
+
+    document.getElementById("qrImage").src = "";
+
+    show("locked");
+
+    if(!expired){
+
+        buzz(25);
+
+    }
+
+}
+
+
+/* ---------- NEW PAYMENT ---------- */
+
+function newPayment(){
+
+    clearInterval(timerInterval);
+
+    timerInterval = null;
+
+    amountElement().value = "";
+
+    document.getElementById("qrImage").src = "";
+
+    show("home");
+
+}
+
+
+/* ---------- COPY UPI ---------- */
+
+function copyUPI(){
+
+    try{
+
+        if(typeof Android !== "undefined" &&
+           typeof Android.copy === "function"){
+
+            Android.copy(UPI);
+
+            toast("UPI ID copied");
+
+            buzz(10);
+
+            return;
+
+        }
+
+
+        if(navigator.clipboard){
+
+            navigator.clipboard.writeText(UPI);
+
+            toast("UPI ID copied");
+
+            buzz(10);
+
+            return;
+
+        }
+
+
+        toast("Copy unavailable");
+
+    }catch(e){
+
+        toast("Copy unavailable");
+
+    }
+
+}
+
+
+/* ---------- SHARE ---------- */
+
+function sharePayment(){
+
+    const amount =
+        Number(amountElement().value || 0);
+
+
+    const text =
+        "Payment to " +
+        SHOP +
+        "\nUPI: " +
+        UPI +
+        "\nAmount: ₹" +
+        amount.toFixed(2);
+
+
+    try{
+
+        if(typeof Android !== "undefined" &&
+           typeof Android.share === "function"){
+
+            Android.share(text);
+
+            return;
+
+        }
+
+
+        if(navigator.share){
+
+            navigator.share({
+
+                title:"SecurePay Payment",
+
+                text:text
+
+            }).catch(function(){});
+
+            return;
+
+        }
+
+
+        if(navigator.clipboard){
+
+            navigator.clipboard.writeText(text);
+
+            toast("Payment details copied");
+
+            return;
+
+        }
+
+
+        toast("Share unavailable");
+
+    }catch(e){
+
+        toast("Share unavailable");
+
+    }
+
+}
+
+
+/* ---------- SAVE SETTINGS ---------- */
+
+function saveSettings(){
+
+    const shop =
+        document.getElementById("shopInput")
+            .value
+            .trim();
+
+
+    const upi =
+        document.getElementById("upiInput")
+            .value
+            .trim();
+
+
+    if(!shop){
+
+        toast("Enter shop name");
+
+        return;
+
+    }
+
+
+    if(!upi){
+
+        toast("Enter UPI ID");
+
+        return;
+
+    }
+
+
+    if(!upi.includes("@")){
+
+        toast("Enter a valid UPI ID");
+
+        return;
+
+    }
+
+
+    try{
+
+        localStorage.setItem(
+            "securepay_shop",
+            shop
+        );
+
+        localStorage.setItem(
+            "securepay_upi",
+            upi
+        );
+
+    }catch(e){
+
+        toast("Unable to save settings");
+
+        return;
+
+    }
+
+
+    SHOP = shop;
+
+    UPI = upi;
+
+    updateMerchantUI();
+
+    toast("Settings saved");
+
+    setTimeout(function(){
+
+        show("home");
+
+    },500);
+
+}
+
+
+/* ---------- ESCAPE KEY ---------- */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            lockQR(false);
+
+        }
+
+    }
+);
+
+
+/* ---------- INITIALIZE ---------- */
+
+loadSettings();
+
+updateMerchantUI();
+
+</script>
+
+</body>
+</html>
