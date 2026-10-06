@@ -21,18 +21,30 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
+      - name: Find Android SDK
         run: |
           export ANDROID_HOME=/usr/local/lib/android/sdk
           export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
-          export PATH="$ANDROID_HOME/cmdline-tools/16.0/bin:$ANDROID_HOME/platform-tools:$PATH"
 
           echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
           echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> "$GITHUB_ENV"
-          echo "$ANDROID_HOME/cmdline-tools/16.0/bin" >> "$GITHUB_PATH"
+
+          SDKMANAGER=$(find "$ANDROID_HOME" -type f -name sdkmanager | head -n 1)
+
+          if [ -z "$SDKMANAGER" ]; then
+            echo "ERROR: sdkmanager not found"
+            find "$ANDROID_HOME" -maxdepth 4 -type f | head -100
+            exit 1
+          fi
+
+          echo "Found sdkmanager at: $SDKMANAGER"
+
+          SDKMANAGER_DIR=$(dirname "$SDKMANAGER")
+          echo "$SDKMANAGER_DIR" >> "$GITHUB_PATH"
           echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
 
-          yes | sdkmanager --licenses || true
+      - name: Install Android SDK packages
+        run: |
           sdkmanager "platforms;android-36" "build-tools;35.0.0"
 
       - name: Set up Gradle
