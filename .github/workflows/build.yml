@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -23,10 +22,15 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: |
+            cmdline-tools;latest
+            platform-tools
+            platforms;android-36
+            build-tools;35.0.0
 
-      - name: Install Android SDK packages
-        run: |
-          sdkmanager "platforms;android-36" "build-tools;35.0.0"
+      - name: Accept Android SDK licenses
+        run: yes | sdkmanager --licenses
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -34,8 +38,7 @@ jobs:
           gradle-version: '8.11.1'
 
       - name: Build APK
-        run: |
-          gradle --no-daemon assembleDebug
+        run: ./gradlew --no-daemon assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
